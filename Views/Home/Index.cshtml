@@ -1,0 +1,127 @@
+@model DxFlow.Web.Controllers.EditorViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Exchange Workflow Bench</title>
+    <link rel="icon" type="image/svg+xml" href="~/img/fdxgraph.svg">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/variables.css">
+    <link rel="stylesheet" href="~/css/base.css">
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<body>
+    <div class="toolbar">
+        <div class="toolbar-brand">
+            <img src="~/img/fdxgraph.svg" alt="" class="brand-icon">
+            Data Exchange Workflow Bench
+        </div>
+        <div class="toolbar-divider"></div>
+        <div class="toolbar-actions">
+            <button class="btn btn-run" id="btn-run" title="Run flow">
+                <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Run
+            </button>
+            <button class="btn" id="btn-arrange" title="Auto-arrange nodes">
+                <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+                Arrange
+            </button>
+            <button class="btn" id="btn-clear" title="Clear canvas">
+                <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+                Clear
+            </button>
+
+            <div class="toolbar-divider"></div>
+
+            <select class="flow-picker" id="flow-picker">
+                <option value="">Saved flows…</option>
+            </select>
+            <button class="btn" id="btn-save" title="Save flow to server">
+                <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                Save
+            </button>
+            <button class="btn btn-primary" id="btn-export" title="Export flow as a headless C# script">
+                <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                </svg>
+                Export as C# code
+            </button>
+        </div>
+
+        <div class="toolbar-user">
+            <span class="user-name">@(Model.UserName ?? "Signed in")</span>
+            <a href="/api/auth/logout" class="auth-btn">Log Off</a>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="node-palette">
+            @foreach (var paletteSection in Model.NodeSections)
+            {
+                <div class="palette-section-title">@paletteSection.SectionName</div>
+                @foreach (var (nodeKey, node) in paletteSection.Nodes)
+                {
+                    <div class="palette-node" draggable="true" data-node-type="@nodeKey">
+                        <div class="palette-node-icon node-accent-@node.Accent">@node.Icon</div>
+                        <div class="palette-node-info">
+                            <div class="palette-node-name">@node.Name</div>
+                            <div class="palette-node-desc">@node.Description</div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="canvas-container">
+        <div class="canvas" id="canvas">
+            <svg class="connections-layer" id="connections-layer">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="var(--accent-primary)" />
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+    </div>
+
+    <div class="context-menu" id="context-menu">
+        <div class="context-menu-item" id="ctx-duplicate">
+            <span>⧉</span> Duplicate
+        </div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item danger" id="ctx-delete">
+            <span>✕</span> Delete
+        </div>
+    </div>
+
+    <div class="graphql-modal-overlay" id="graphql-modal-overlay">
+        <div class="graphql-modal">
+            <div class="graphql-modal-header">
+                <span id="graphql-modal-title">GraphQL Query</span>
+                <button class="graphql-modal-close" id="graphql-modal-close" title="Close">✕</button>
+            </div>
+            <pre class="graphql-modal-body" id="graphql-modal-body"></pre>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <div class="help-text">
+        <kbd>Del</kbd> Delete selected · <kbd>Right-click</kbd> Context menu · Drag from ports to connect
+    </div>
+
+    <script id="node-types-data" type="application/json">@Html.Raw(Model.NodeTypesJson)</script>
+    <script type="module" src="~/js/app.js"></script>
+</body>
+</html>

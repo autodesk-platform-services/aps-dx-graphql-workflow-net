@@ -1,0 +1,134 @@
+{
+  "id": "0dba775744a8",
+  "name": "CreateMultipleExchanges",
+  "flow": {
+    "nodes": [
+      {
+        "id": "node-1",
+        "type": "hubs",
+        "x": 60,
+        "y": 60,
+        "selectedIds": [
+          "b.5b879731-d709-4e15-abde-bb0431a3c7a0"
+        ]
+      },
+      {
+        "id": "node-2",
+        "type": "projects",
+        "x": 463.4921875,
+        "y": 60,
+        "selectedIds": [
+          "cHJvan5iLjc2OGNhZTE0LTc2YjMtNDUzMS05MDMwLTI1MjEyZGFiNGU0OH5iLmNhZjc1ZjVjLWVhNTEtNDExZC05ZWM2LTRkMmU3MTc0Y2MzZA",
+          "cHJvan5iLjc2OGNhZTE0LTc2YjMtNDUzMS05MDMwLTI1MjEyZGFiNGU0OH5iLmQ3NjE3NzMwLTg1YWYtNDk0Zi05MTA1LTliMTY0MjViN2U5Nw",
+          "cHJvan5iLjc2OGNhZTE0LTc2YjMtNDUzMS05MDMwLTI1MjEyZGFiNGU0OH5iLmUzYmU4Yzg3LTFkZjUtNDcwZi05MjE0LTFiNmNjODU0NTJmYQ",
+          "cHJvan5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZQ"
+        ]
+      },
+      {
+        "id": "node-3",
+        "type": "folders",
+        "x": 884.234375,
+        "y": 60,
+        "selectedIds": [
+          "Zm9sZH5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5CRTlISkpNbFFKU0E0NE9MdU55RUd3",
+          "Zm9sZH5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5pQ3EyWThBVVF6Mm5OeFVSb1N2Wk5n",
+          "Zm9sZH5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5mbXRxSk54WFF4cXQtRlRSRVpXa1pR"
+        ]
+      },
+      {
+        "id": "node-5",
+        "type": "items",
+        "x": 1184.234375,
+        "y": 60,
+        "selectedIds": [
+          "aXRlbX5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5CRTlISkpNbFFKU0E0NE9MdU55RUd3fnVybjphZHNrLndpcHByb2Q6ZG0ubGluZWFnZTpES29LS195LVFkMkxQOVJPRW54VkZB",
+          "aXRlbX5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5CRTlISkpNbFFKU0E0NE9MdU55RUd3fnVybjphZHNrLndpcHByb2Q6ZG0ubGluZWFnZTo1UmlwdVFURFJsNkNNQWZsbHJQeU93"
+        ]
+      },
+      {
+        "id": "node-6",
+        "type": "exchanges",
+        "x": 1184.234375,
+        "y": 351.5,
+        "selectedIds": [
+          "ZXhjfkZxRWt5Z2p3cGU2MzczdWV1OU1ZTFNfTDJDfmZkZjFjYjFlLWZiOWUtM2Q1NC04MzJlLTEyYzdlNjkwMDBmMw"
+        ]
+      },
+      {
+        "id": "node-7",
+        "type": "data",
+        "x": 1725.53125,
+        "y": 527
+      },
+      {
+        "id": "node-8",
+        "type": "get_views",
+        "x": 1725.53125,
+        "y": 60,
+        "selectedIds": [
+          "5370f14c-4533-dc30-c8c4-9940a41810ee",
+          "e6ece029-9a2f-26b0-fbda-9e70acc545cc",
+          "dc5d550f-1472-fd10-36ab-c991f2a034fe"
+        ]
+      },
+      {
+        "id": "node-9",
+        "type": "logic",
+        "x": 2085.53125,
+        "y": 60
+      }
+    ],
+    "connections": [
+      {
+        "from": "node-1",
+        "to": "node-2",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-2",
+        "to": "node-3",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-3",
+        "to": "node-5",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-3",
+        "to": "node-6",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-6",
+        "to": "node-7",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-5",
+        "to": "node-8",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-8",
+        "to": "node-9",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-3",
+        "to": "node-9",
+        "fromPortIndex": 0,
+        "toPortIndex": 1
+      }
+    ]
+  },
+  "created_at": "2026-07-21T18:27:26.190416+00:00",
+  "updated_at": "2026-07-21T18:27:26.190416+00:00"
+}

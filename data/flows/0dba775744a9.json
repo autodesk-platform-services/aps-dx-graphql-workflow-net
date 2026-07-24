@@ -1,0 +1,112 @@
+{
+  "id": "0dba775744a9",
+  "name": "ExportDataFromMultipleExchanges",
+  "flow": {
+    "nodes": [
+      {
+        "id": "node-1",
+        "type": "hubs",
+        "x": 60,
+        "y": 60,
+        "selectedIds": [
+          "b.5b879731-d709-4e15-abde-bb0431a3c7a0"
+        ]
+      },
+      {
+        "id": "node-2",
+        "type": "projects",
+        "x": 463.4921875,
+        "y": 60,
+        "selectedIds": [
+          "cHJvan5iLjc2OGNhZTE0LTc2YjMtNDUzMS05MDMwLTI1MjEyZGFiNGU0OH5iLmNhZjc1ZjVjLWVhNTEtNDExZC05ZWM2LTRkMmU3MTc0Y2MzZA",
+          "cHJvan5iLjc2OGNhZTE0LTc2YjMtNDUzMS05MDMwLTI1MjEyZGFiNGU0OH5iLmQ3NjE3NzMwLTg1YWYtNDk0Zi05MTA1LTliMTY0MjViN2U5Nw",
+          "cHJvan5iLjc2OGNhZTE0LTc2YjMtNDUzMS05MDMwLTI1MjEyZGFiNGU0OH5iLmUzYmU4Yzg3LTFkZjUtNDcwZi05MjE0LTFiNmNjODU0NTJmYQ",
+          "cHJvan5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZQ"
+        ]
+      },
+      {
+        "id": "node-3",
+        "type": "folders",
+        "x": 884.234375,
+        "y": 60,
+        "selectedIds": [
+          "Zm9sZH5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5CRTlISkpNbFFKU0E0NE9MdU55RUd3",
+          "Zm9sZH5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5pQ3EyWThBVVF6Mm5OeFVSb1N2Wk5n",
+          "Zm9sZH5iLjViODc5NzMxLWQ3MDktNGUxNS1hYmRlLWJiMDQzMWEzYzdhMH5iLjkyZTIyYjFjLTZmNjMtNDk2Ni04ODZlLTg4OGIzZDVlNTYyZX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5mbXRxSk54WFF4cXQtRlRSRVpXa1pR"
+        ]
+      },
+      {
+        "id": "node-6",
+        "type": "exchanges",
+        "x": 1184.234375,
+        "y": 60,
+        "selectedIds": [
+          "ZXhjfkZxRWt5Z2p3cGU2MzczdWV1OU1ZTFNfTDJDfmZkZjFjYjFlLWZiOWUtM2Q1NC04MzJlLTEyYzdlNjkwMDBmMw",
+          "ZXhjfkZxRWt5Z2p3cGU2MzczdWV1OU1ZTFNfTDJDfmI3MTJhOGFmLThmNTMtMzM3NC04OTE0LTZlNWEyMWVkNDM2MA",
+          "ZXhjfkZxRWt5Z2p3cGU2MzczdWV1OU1ZTFNfTDJDfmE3YzY1NTFjLWE3MjMtMzFiNS04MDZjLTlmZWEyNzI2ODQxYg"
+        ]
+      },
+      {
+        "id": "node-10",
+        "type": "process",
+        "x": 1612.5390625,
+        "y": 60,
+        "filterQuery": "property.name.category==Rooms"
+      },
+      {
+        "id": "node-11",
+        "type": "csv_output",
+        "x": 2812.859375,
+        "y": 60,
+        "filepath": "/Users/grigord/Downloads/rooms"
+      },
+      {
+        "id": "node-12",
+        "type": "excel_output",
+        "x": 2812.859375,
+        "y": 313,
+        "filepath": "/Users/grigord/Downloads/rooms"
+      }
+    ],
+    "connections": [
+      {
+        "from": "node-1",
+        "to": "node-2",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-2",
+        "to": "node-3",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-3",
+        "to": "node-6",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-6",
+        "to": "node-10",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-10",
+        "to": "node-11",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      },
+      {
+        "from": "node-10",
+        "to": "node-12",
+        "fromPortIndex": 0,
+        "toPortIndex": 0
+      }
+    ]
+  },
+  "created_at": "2026-07-21T18:27:26.190416+00:00",
+  "updated_at": "2026-07-22T00:10:33.296570+00:00"
+}

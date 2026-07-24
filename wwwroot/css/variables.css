@@ -1,0 +1,48 @@
+/* =====================================================
+   Color tokens - ported from aps-medm-navigator-python's
+   light Autodesk theme (accent #0696d7, white surfaces,
+   #e5e5e5 borders) instead of the original flow editor's
+   dark/neon palette.
+   ===================================================== */
+
+:root {
+    /* Base tokens straight from the reference project */
+    --nav-bg: #ffffff;
+    --nav-text: #333333;
+    --sidebar-bg: #ffffff;
+    --sidebar-text: #3d3d3d;
+    --accent-color: #0696d7;
+    --accent-color-dark: #057ab0;
+    --border-color: #e5e5e5;
+    --item-hover: #f5f5f5;
+    --item-selected: #eeeeee;
+
+    /* Surfaces specific to the flow canvas, derived from the same palette */
+    --bg-page: #ffffff;
+    --bg-canvas: #fafafa;
+    --bg-node: #ffffff;
+    --bg-node-hover: #f5f5f5;
+    --bg-field: #fafafa;
+
+    /* Text */
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+
+    /* Node-type accents - a small categorical set built around the single
+       brand accent color, one hue per node type */
+    --accent-primary: #0696d7;   /* Function */
+    --accent-secondary: #4aa3df; /* connection preview / dragging state */
+    --accent-success: #2e7d32;   /* Hubs */
+    --accent-tertiary: #c0392b;  /* Output */
+    --accent-warning: #d68910;   /* Switch */
+    --accent-info: #6f42c1;      /* Template */
+    --accent-teal: #0d9488;      /* Projects */
+    --accent-magenta: #be185d;   /* Folders */
+    --accent-slate: #475569;     /* Items */
+    --accent-gold: #a16207;      /* Exchanges */
+
+    --shadow-node: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --shadow-node-hover: 0 4px 14px rgba(0, 0, 0, 0.08);
+    --radius: 4px;
+}

@@ -1,0 +1,102 @@
+/* =====================================================
+   Landing page - shown when signed out. Placeholder art
+   until real illustration/brand assets are ready.
+   ===================================================== */
+
+.landing-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-canvas);
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0);
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+}
+
+.landing-card {
+    background: var(--bg-node);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-node);
+    padding: 48px 56px;
+    max-width: 440px;
+    width: 90%;
+    text-align: center;
+}
+
+.landing-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 28px;
+}
+
+.landing-art {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto 28px;
+    display: block;
+}
+
+.landing-art path {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+
+.landing-art circle {
+    fill: var(--bg-node);
+    stroke-width: 3;
+}
+
+.landing-art .art-primary { stroke: var(--accent-primary); }
+.landing-art .art-success { stroke: var(--accent-success); }
+.landing-art .art-warning { stroke: var(--accent-warning); }
+.landing-art .art-info { stroke: var(--accent-info); }
+.landing-art .art-tertiary { stroke: var(--accent-tertiary); }
+
+.landing-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.landing-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.landing-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    background: var(--accent-color);
+    color: #fff;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.landing-cta:hover {
+    background: var(--accent-color-dark);
+    box-shadow: var(--shadow-node-hover);
+}
+
+.landing-footnote {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+}

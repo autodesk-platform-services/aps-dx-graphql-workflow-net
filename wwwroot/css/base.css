@@ -1,0 +1,23 @@
+/* =====================================================
+   Shared reset + typography - used by every page (landing
+   page and the flow editor alike)
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Artifakt Element', 'Segoe UI', Arial, sans-serif;
+    color: var(--text-primary);
+}
+
+/* Product icon next to the brand name - toolbar and landing page alike.
+   Sized in em so it scales with whatever font-size its own brand text uses. */
+.brand-icon {
+    height: 1.2em;
+    width: 1.2em;
+    flex-shrink: 0;
+}

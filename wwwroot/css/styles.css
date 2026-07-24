@@ -1,0 +1,1076 @@
+/* =====================================================
+   Data Exchange Workflow Bench - CSS Styles
+   ===================================================== */
+
+body {
+    background: var(--bg-page);
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* =====================================================
+   Header / Toolbar
+   ===================================================== */
+
+/* Grid, not flex: the middle column (.toolbar-actions) gets exactly the
+   leftover space between the brand group and .toolbar-user, so centering
+   its own content (justify-content: center below) centers it relative to
+   those two - not just to the toolbar's overall width, which would drift
+   off-center whenever the brand/user groups differ in width. */
+.toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+    z-index: 1000;
+}
+
+.toolbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent-color);
+    letter-spacing: -0.3px;
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-color);
+}
+
+.toolbar-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.toolbar-user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.toolbar-user .user-name {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.toolbar-user .auth-btn {
+    padding: 6px 14px;
+    border: 1px solid var(--accent-color);
+    border-radius: var(--radius);
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.toolbar-user .auth-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* =====================================================
+   Buttons
+   ===================================================== */
+
+.btn {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-node);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn:hover {
+    background: var(--item-hover);
+    border-color: var(--accent-color);
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--accent-color-dark);
+    border-color: var(--accent-color-dark);
+    box-shadow: var(--shadow-node-hover);
+}
+
+.btn-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.flow-picker {
+    font-family: inherit;
+    font-size: 13px;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-node);
+    color: var(--text-primary);
+    max-width: 180px;
+}
+
+/* =====================================================
+   Sidebar
+   ===================================================== */
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 240px;
+    bottom: 0;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 20px 16px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebar-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.node-palette {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.palette-section-title {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+.palette-section-title:first-child {
+    margin-top: 0;
+}
+
+.palette-node {
+    padding: 12px 14px;
+    background: var(--bg-node);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: grab;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.palette-node:hover {
+    background: var(--item-hover);
+    border-color: var(--accent-color);
+}
+
+.palette-node:active {
+    cursor: grabbing;
+}
+
+.palette-node-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.palette-node-info {
+    flex: 1;
+}
+
+.palette-node-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--sidebar-text);
+}
+
+.palette-node-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* Accent classes for palette icons, keyed by the node type's `accent` field */
+.node-accent-primary { background: rgba(6, 150, 215, 0.12); color: var(--accent-primary); }
+.node-accent-success { background: rgba(46, 125, 50, 0.12); color: var(--accent-success); }
+.node-accent-tertiary { background: rgba(192, 57, 43, 0.12); color: var(--accent-tertiary); }
+.node-accent-warning { background: rgba(214, 137, 16, 0.12); color: var(--accent-warning); }
+.node-accent-info { background: rgba(111, 66, 193, 0.12); color: var(--accent-info); }
+.node-accent-teal { background: rgba(13, 148, 136, 0.12); color: var(--accent-teal); }
+.node-accent-magenta { background: rgba(190, 24, 93, 0.12); color: var(--accent-magenta); }
+.node-accent-slate { background: rgba(71, 85, 105, 0.12); color: var(--accent-slate); }
+.node-accent-gold { background: rgba(161, 98, 7, 0.12); color: var(--accent-gold); }
+
+/* =====================================================
+   Canvas
+   ===================================================== */
+
+.canvas-container {
+    position: fixed;
+    top: 60px;
+    left: 240px;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background: var(--bg-canvas);
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0);
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+    cursor: grab;
+}
+
+.canvas-container.panning {
+    cursor: grabbing;
+}
+
+/* The dotted grid lives on .canvas-container (which never moves) so it can
+   be scrolled via background-position to track the pan offset, giving an
+   "infinite" canvas feel instead of a fixed-size plane with a visible edge. */
+.canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* =====================================================
+   SVG Connections
+   ===================================================== */
+
+.connections-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    /* Browsers default <svg> to overflow:hidden (unlike a plain div), which
+       silently clips any connection whose coordinates fall outside this
+       layer's own 100%-of-canvas box - easy to hit now that panning lets
+       nodes end up far from that original area. Node divs already render
+       fine outside that box since divs default to overflow:visible; match
+       that here so connections do too. */
+    overflow: visible;
+}
+
+.connection {
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    pointer-events: stroke;
+    cursor: pointer;
+    transition: stroke 0.2s ease;
+}
+
+.connection:hover {
+    stroke: var(--accent-tertiary);
+    stroke-width: 3;
+}
+
+.connection-preview {
+    fill: none;
+    stroke: var(--accent-secondary);
+    stroke-width: 2;
+    stroke-dasharray: 8 4;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* =====================================================
+   Nodes
+   ===================================================== */
+
+.node {
+    position: absolute;
+    /* width: auto would shrink-to-fit against the containing block's own
+       box (#canvas, sized to the viewport - see pan.js), capping node width
+       at the type's min-width once a node's left offset pushes it past that
+       box. max-content sizes from the node's own content instead, so nodes
+       panned/dragged far from the origin still grow to fit (e.g. the Debug
+       Output node's JSON preview). */
+    width: max-content;
+    min-width: 180px;
+    background: var(--bg-node);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-node);
+    cursor: move;
+    z-index: 10;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    /* Dragging a node or a connection between ports shouldn't select text.
+       Inputs/textareas inside a node stay selectable/editable regardless. */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.node:hover {
+    border-color: var(--accent-color);
+}
+
+.node.selected {
+    border-color: var(--accent-color);
+    box-shadow: var(--shadow-node), 0 0 0 2px rgba(6, 150, 215, 0.2);
+}
+
+.node.dragging {
+    z-index: 100;
+    opacity: 0.95;
+}
+
+.node-header {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 3px 3px 0 0;
+}
+
+.node-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.node-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.node-run-btn {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 9px;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.15s ease;
+}
+
+.node-run-btn:hover {
+    background: var(--item-hover);
+    color: var(--accent-color);
+}
+
+.node-body {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.node-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* =====================================================
+   Node Input Fields
+   ===================================================== */
+
+.node-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.node-field-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+.node-field-hint {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* Get Exchange Data's "Insert preset…" filter-snippet picker */
+.node-filter-preset {
+    width: 100%;
+    font-family: inherit;
+    font-size: 12px;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-field);
+    color: var(--text-secondary);
+    outline: none;
+    transition: all 0.15s ease;
+}
+
+.node-filter-preset:hover {
+    border-color: var(--accent-color);
+}
+
+/* Selectable data table (Hubs, Projects) */
+.node-table-wrap {
+    max-height: 160px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+}
+
+.node-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.node-data-table th,
+.node-data-table td {
+    padding: 5px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.node-data-table th {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    background: var(--bg-field);
+    /* Sticks to the top of .node-table-wrap's own scroll area (its nearest
+       scrolling ancestor) as its body scrolls underneath - needs its own
+       background above, else scrolled-under rows would show through it. */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.node-data-table td {
+    color: var(--text-primary);
+}
+
+.node-data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.node-data-table th.node-table-check-col,
+.node-data-table td.node-table-check-col {
+    width: 20px;
+    padding: 5px 6px;
+    text-align: center;
+}
+
+.node-data-table input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.node-table-empty {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    white-space: normal;
+}
+
+/* Get Views node - clicking a row (not its checkbox) previews that view in
+   the viewer above, independent of the checkbox's own output-selection
+   meaning. */
+.node-type-get_views .node-data-table tbody tr {
+    cursor: pointer;
+}
+
+.node-type-get_views .node-data-table tbody tr:hover td {
+    background: var(--item-hover);
+}
+
+.node-type-get_views .node-data-table tbody tr.active-view td {
+    background: rgba(161, 98, 7, 0.1);
+    font-weight: 600;
+}
+
+/* Viewer Output node's embedded Autodesk Viewer canvas. `position: relative`
+   is required - the Viewer SDK fills its container with an absolutely
+   positioned wrapper (width/height: 100%), which otherwise resolves against
+   the nearest positioned ancestor (.node) instead of this element. */
+.node-viewer-container {
+    position: relative;
+    width: 240px;
+    height: 180px;
+    background: #1a1a1a;
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+/* Picks which element (of multiple selected Exchanges/Items) the viewer above
+   shows - hidden via JS when there's nothing to choose between. */
+.node-viewer-select {
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px 8px;
+    font-family: inherit;
+    font-size: 11px;
+    color: var(--text-primary);
+    background: var(--bg-field);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    outline: none;
+    cursor: pointer;
+}
+
+.node-viewer-select:hover {
+    border-color: var(--accent-color);
+}
+
+.node-viewer-select:focus {
+    border-color: var(--accent-info);
+    box-shadow: 0 0 0 2px rgba(111, 66, 193, 0.15);
+}
+
+/* Make table-based nodes wide enough to read their columns */
+.node-type-hubs,
+.node-type-projects,
+.node-type-folders,
+.node-type-items,
+.node-type-exchanges {
+    min-width: 220px;
+}
+
+/* Wide enough to fit the 240px viewer canvas plus node-body padding */
+.node-type-data,
+.node-type-get_views {
+    min-width: 280px;
+}
+
+/* Text input shared by Filter's "Filter by name" box */
+.node-title-input {
+    width: 100%;
+    padding: 8px 10px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: var(--bg-field);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    outline: none;
+    transition: all 0.15s ease;
+}
+
+.node-title-input::placeholder {
+    color: var(--text-muted);
+}
+
+.node-title-input:hover {
+    border-color: var(--accent-color);
+}
+
+.node-title-input:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(6, 150, 215, 0.15);
+}
+
+/* Get Exchange Data's table has 7 columns - give it more room. */
+.node-type-process {
+    min-width: 420px;
+}
+
+/* Output Node Display */
+.node-output-display {
+    padding: 10px 12px;
+    background: var(--bg-field);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    min-height: 40px;
+    max-height: 320px;
+    font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 12px;
+    word-break: break-word;
+    overflow: auto;
+    resize: vertical;
+}
+
+.node-output-placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.node-output-value {
+    color: var(--accent-tertiary);
+    font-weight: 600;
+}
+
+.node-output-display pre {
+    margin: 0;
+    font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 11px;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+}
+
+/* CSV/Excel Output's export result message, reusing .node-output-display
+   as the container - distinct from .node-output-value (which is always
+   tertiary/red, meant for Debug Output's raw value, not a success state). */
+.node-export-success { color: var(--accent-success); font-weight: 600; }
+.node-export-error { color: var(--accent-tertiary); font-weight: 600; }
+
+/* Make output nodes wider to show values, but cap it - an absolutely
+   positioned box with no width constraint sizes itself to fit its content
+   as if nothing wrapped at all (word-break/pre-wrap don't shrink that
+   intrinsic size, only apply once something else caps the width), so a
+   long unbroken value would otherwise stretch the node arbitrarily wide. */
+.node-type-output {
+    min-width: 200px;
+    max-width: 480px;
+}
+
+/* Create Exchange - 3 labeled input ports plus a results box needs more room. */
+.node-type-logic {
+    min-width: 240px;
+    max-width: 480px;
+}
+
+/* Run Button Style */
+.btn-run {
+    background: var(--accent-success);
+    border-color: var(--accent-success);
+    color: #fff;
+}
+
+.btn-run:hover {
+    background: #256428;
+    border-color: #256428;
+    box-shadow: var(--shadow-node-hover);
+}
+
+/* =====================================================
+   Multi-Port Layout
+   ===================================================== */
+
+.node-ports-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 20px;
+}
+
+.node-ports-labels-left {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.node-ports-labels-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.ports-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ports-container.ports-input {
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ports-container .port {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
+}
+
+/* =====================================================
+   Ports
+   ===================================================== */
+
+.port {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg-node);
+    border: 2px solid var(--accent-primary);
+    cursor: crosshair;
+    transition: all 0.15s ease;
+    position: relative;
+}
+
+.port:hover {
+    transform: scale(1.3);
+    background: var(--accent-primary);
+    box-shadow: 0 0 0 4px rgba(6, 150, 215, 0.15);
+}
+
+.port.connecting {
+    background: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    transform: scale(1.4);
+}
+
+.port-input {
+    position: absolute;
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.port-output {
+    position: absolute;
+    right: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.port-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* =====================================================
+   Node Type Colors
+   ===================================================== */
+
+/* Hubs Node */
+.node-type-hubs .node-header { background: rgba(46, 125, 50, 0.08); }
+.node-type-hubs .node-icon { background: rgba(46, 125, 50, 0.12); color: var(--accent-success); }
+.node-type-hubs .port { border-color: var(--accent-success); }
+.node-type-hubs .port:hover { background: var(--accent-success); box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15); }
+.node-type-hubs .node-data-table input[type="checkbox"] { accent-color: var(--accent-success); }
+
+/* Projects Node */
+.node-type-projects .node-header { background: rgba(13, 148, 136, 0.08); }
+.node-type-projects .node-icon { background: rgba(13, 148, 136, 0.12); color: var(--accent-teal); }
+.node-type-projects .port { border-color: var(--accent-teal); }
+.node-type-projects .port:hover { background: var(--accent-teal); box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15); }
+.node-type-projects .node-data-table input[type="checkbox"] { accent-color: var(--accent-teal); }
+
+/* Folders Node */
+.node-type-folders .node-header { background: rgba(190, 24, 93, 0.08); }
+.node-type-folders .node-icon { background: rgba(190, 24, 93, 0.12); color: var(--accent-magenta); }
+.node-type-folders .port { border-color: var(--accent-magenta); }
+.node-type-folders .port:hover { background: var(--accent-magenta); box-shadow: 0 0 0 4px rgba(190, 24, 93, 0.15); }
+.node-type-folders .node-data-table input[type="checkbox"] { accent-color: var(--accent-magenta); }
+
+/* Items Node */
+.node-type-items .node-header { background: rgba(71, 85, 105, 0.08); }
+.node-type-items .node-icon { background: rgba(71, 85, 105, 0.12); color: var(--accent-slate); }
+.node-type-items .port { border-color: var(--accent-slate); }
+.node-type-items .port:hover { background: var(--accent-slate); box-shadow: 0 0 0 4px rgba(71, 85, 105, 0.15); }
+.node-type-items .node-data-table input[type="checkbox"] { accent-color: var(--accent-slate); }
+
+/* Exchanges Node */
+.node-type-exchanges .node-header { background: rgba(161, 98, 7, 0.08); }
+.node-type-exchanges .node-icon { background: rgba(161, 98, 7, 0.12); color: var(--accent-gold); }
+.node-type-exchanges .port { border-color: var(--accent-gold); }
+.node-type-exchanges .port:hover { background: var(--accent-gold); box-shadow: 0 0 0 4px rgba(161, 98, 7, 0.15); }
+.node-type-exchanges .node-data-table input[type="checkbox"] { accent-color: var(--accent-gold); }
+
+/* Process Node */
+.node-type-process .node-header { background: rgba(6, 150, 215, 0.08); }
+.node-type-process .node-icon { background: rgba(6, 150, 215, 0.12); color: var(--accent-primary); }
+
+/* Output Node */
+.node-type-output .node-header { background: rgba(192, 57, 43, 0.08); }
+.node-type-output .node-icon { background: rgba(192, 57, 43, 0.12); color: var(--accent-tertiary); }
+.node-type-output .port { border-color: var(--accent-tertiary); }
+.node-type-output .port:hover { background: var(--accent-tertiary); box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.15); }
+
+/* Logic (Switch) Node */
+.node-type-logic .node-header { background: rgba(214, 137, 16, 0.08); }
+.node-type-logic .node-icon { background: rgba(214, 137, 16, 0.12); color: var(--accent-warning); }
+.node-type-logic .port { border-color: var(--accent-warning); }
+.node-type-logic .port:hover { background: var(--accent-warning); box-shadow: 0 0 0 4px rgba(214, 137, 16, 0.15); }
+
+/* Data (Template) Node */
+.node-type-data .node-header { background: rgba(111, 66, 193, 0.08); }
+.node-type-data .node-icon { background: rgba(111, 66, 193, 0.12); color: var(--accent-info); }
+.node-type-data .port { border-color: var(--accent-info); }
+.node-type-data .port:hover { background: var(--accent-info); box-shadow: 0 0 0 4px rgba(111, 66, 193, 0.15); }
+
+/* Get Views Node */
+.node-type-get_views .node-header { background: rgba(161, 98, 7, 0.08); }
+.node-type-get_views .node-icon { background: rgba(161, 98, 7, 0.12); color: var(--accent-gold); }
+
+/* CSV Output Node */
+.node-type-csv_output .node-header { background: rgba(13, 148, 136, 0.08); }
+.node-type-csv_output .node-icon { background: rgba(13, 148, 136, 0.12); color: var(--accent-teal); }
+.node-type-csv_output .port { border-color: var(--accent-teal); }
+.node-type-csv_output .port:hover { background: var(--accent-teal); box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15); }
+
+/* Excel Output Node */
+.node-type-excel_output .node-header { background: rgba(46, 125, 50, 0.08); }
+.node-type-excel_output .node-icon { background: rgba(46, 125, 50, 0.12); color: var(--accent-success); }
+.node-type-excel_output .port { border-color: var(--accent-success); }
+.node-type-excel_output .port:hover { background: var(--accent-success); box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15); }
+.node-type-get_views .port { border-color: var(--accent-gold); }
+.node-type-get_views .port:hover { background: var(--accent-gold); box-shadow: 0 0 0 4px rgba(161, 98, 7, 0.15); }
+.node-type-get_views .node-data-table input[type="checkbox"] { accent-color: var(--accent-gold); }
+
+/* =====================================================
+   Context Menu
+   ===================================================== */
+
+.context-menu {
+    position: fixed;
+    background: var(--bg-node);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    padding: 6px;
+    z-index: 2000;
+    min-width: 160px;
+    display: none;
+}
+
+.context-menu.show {
+    display: block;
+    animation: contextMenuIn 0.15s ease;
+}
+
+@keyframes contextMenuIn {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.context-menu-item {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.1s ease;
+}
+
+.context-menu-item:hover {
+    background: var(--item-hover);
+}
+
+.context-menu-item.danger {
+    color: var(--accent-tertiary);
+}
+
+.context-menu-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 6px 0;
+}
+
+/* =====================================================
+   Toast Notifications
+   ===================================================== */
+
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    padding: 12px 20px;
+    background: var(--bg-node);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    font-size: 13px;
+    color: var(--text-primary);
+    animation: toastIn 0.3s ease;
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================================
+   GraphQL Query Button + Modal
+   ===================================================== */
+
+.node-graphql-row {
+    justify-content: center;
+}
+
+.node-graphql-btn {
+    padding: 6px 12px;
+    font-family: inherit;
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--accent-color);
+    background: var(--bg-field);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.node-graphql-btn:hover {
+    background: var(--item-hover);
+    border-color: var(--accent-color);
+}
+
+.graphql-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 4000;
+}
+
+.graphql-modal-overlay.show {
+    display: flex;
+    animation: contextMenuIn 0.15s ease;
+}
+
+.graphql-modal {
+    background: var(--bg-node);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    width: 520px;
+    max-width: 90vw;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.graphql-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.graphql-modal-close {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+}
+
+.graphql-modal-close:hover {
+    color: var(--text-primary);
+}
+
+.graphql-modal-body {
+    margin: 0;
+    padding: 16px;
+    overflow: auto;
+    font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    user-select: text;
+}
+
+/* =====================================================
+   Help Text
+   ===================================================== */
+
+.help-text {
+    position: fixed;
+    bottom: 16px;
+    left: 256px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.help-text kbd {
+    background: var(--bg-node);
+    border: 1px solid var(--border-color);
+    padding: 2px 6px;
+    border-radius: var(--radius);
+    font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+    font-size: 11px;
+}
