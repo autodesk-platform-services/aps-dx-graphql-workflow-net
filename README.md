@@ -5,7 +5,7 @@
 
 ## Description
 
-This is the **ASP.NET Core** port of the Python [01.DX_Flow](../01.DX_Flow) sample — the same visual dataflow editor for the APS Data Exchange GraphQL API, written as **learning material** with explicit structure and comments rather than minimal code.
+This is the **ASP.NET Core** port of the Python sample (https://github.com/autodesk-platform-services/aps-dx-graphql-workflow-python) — the same visual dataflow editor using the APS Data Exchange GraphQL API, written as **learning material** with explicit structure and comments rather than minimal code.
 
 The frontend (`wwwroot/`) is shared with the Python sample. The backend is reorganized into familiar ASP.NET Core layers: controllers, services, configuration, and node metadata.
 
