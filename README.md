@@ -17,7 +17,7 @@ For project layout, how to read the code, and node types, see [other_info.md](./
 
 ## Dependencies
 
-- **[.NET SDK](https://dotnet.microsoft.com/download)** — this sample targets **.NET 10** (`net10.0`).
+- **[.NET SDK](https://dotnet.microsoft.com/download)** — this sample targets **.NET 9** (`net9.0`), matching [aps-medm-explorer](https://github.com/autodesk-platform-services/aps-medm-explorer) for Dokku compatibility.
 - **APS account** — [create an app](https://aps.autodesk.com/myapps) with callback URL `http://localhost:8080/api/auth/callback`.
 
 ## Running locally

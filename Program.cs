@@ -66,7 +66,7 @@ if (apsOptions.BehindProxy || onPlatform)
     {
         ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
     };
-    forwardedHeaders.KnownIPNetworks.Clear();
+    forwardedHeaders.KnownNetworks.Clear();
     forwardedHeaders.KnownProxies.Clear();
     app.UseForwardedHeaders(forwardedHeaders);
 }

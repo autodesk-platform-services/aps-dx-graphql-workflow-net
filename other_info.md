@@ -7,7 +7,7 @@ This document mirrors [other_info.md](../01.DX_Flow/other_info.md) from the Pyth
 ```
 02.Dx_Flow_NET/
 ├── aps-dx-graphql-workflow-net.csproj   # Web app project (repo root — Dokku buildpack)
-├── aps-dx-graphql-workflow-net.slnx
+├── aps-dx-graphql-workflow-net.sln
 ├── data/flows/                # Saved flow JSON (includes reference presets)
 ├── README.md                  # Quick start
 ├── other_info.md              # This file
