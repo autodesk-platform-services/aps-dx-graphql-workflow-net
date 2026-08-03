@@ -57,7 +57,7 @@ public sealed class ModelDerivativeService
             throw new ViewsLookupException($"Item {itemId} has no tip version");
         }
 
-        var derivativeUrn = FindDerivativeUrn(itemPayload, tipVersionId);
+        var (derivativeUrn, manifestLink) = FindDerivativeInfo(itemPayload, tipVersionId);
         if (string.IsNullOrEmpty(derivativeUrn))
         {
             throw new ViewsLookupException($"Tip version {tipVersionId} has no derivative");
@@ -65,7 +65,7 @@ public sealed class ModelDerivativeService
 
         using var metadataRequest = new HttpRequestMessage(
             HttpMethod.Get,
-            string.Format(ModelDerivativeMetadataUrl, Uri.EscapeDataString(derivativeUrn)));
+            BuildMetadataUrl(derivativeUrn, manifestLink));
         metadataRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
         using var metadataResponse = await client.SendAsync(metadataRequest, cancellationToken);
@@ -117,11 +117,11 @@ public sealed class ModelDerivativeService
         return (parts[2], parts[^1]);
     }
 
-    private static string? FindDerivativeUrn(JsonElement itemPayload, string tipVersionId)
+    private static (string? Urn, string? ManifestLink) FindDerivativeInfo(JsonElement itemPayload, string tipVersionId)
     {
         if (!itemPayload.TryGetProperty("included", out var included))
         {
-            return null;
+            return (null, null);
         }
 
         foreach (var entry in included.EnumerateArray())
@@ -136,15 +136,35 @@ public sealed class ModelDerivativeService
                 continue;
             }
 
-            return entry
-                .GetProperty("relationships")
-                .GetProperty("derivatives")
-                .GetProperty("data")
-                .GetProperty("id")
-                .GetString();
+            var derivatives = entry.GetProperty("relationships").GetProperty("derivatives");
+            var urn = derivatives.GetProperty("data").GetProperty("id").GetString();
+            var manifestLink = derivatives.TryGetProperty("meta", out var meta) &&
+                meta.TryGetProperty("link", out var link) &&
+                link.TryGetProperty("href", out var href)
+                    ? href.GetString()
+                    : null;
+
+            return (urn, manifestLink);
         }
 
-        return null;
+        return (null, null);
+    }
+
+    // Data Management's "derivatives" relationship carries a manifest link that is
+    // already scoped to wherever the derivative actually lives — for EMEA/AUS-hosted
+    // projects that's "/v2/regions/{region}/designdata/{urn}/manifest", not the
+    // global "/v2/designdata/{urn}/manifest" path. The global metadata endpoint
+    // 401s for those, so prefer rewriting this link over the hardcoded template
+    // whenever Data Management gives us one.
+    private static string BuildMetadataUrl(string derivativeUrn, string? manifestLink)
+    {
+        var manifestPath = manifestLink?.Split('?')[0];
+        if (!string.IsNullOrEmpty(manifestPath) && manifestPath.EndsWith("/manifest", StringComparison.Ordinal))
+        {
+            return manifestPath[..^"/manifest".Length] + "/metadata";
+        }
+
+        return string.Format(ModelDerivativeMetadataUrl, Uri.EscapeDataString(derivativeUrn));
     }
 }
 

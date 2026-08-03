@@ -216,17 +216,40 @@ internal static class FlowCodegenPreludeTemplate
             return (parts[2], parts[^1]);
         }
 
-        static string? FindDerivativeUrn(JsonElement itemPayload, string tipVersionId)
+        static (string? Urn, string? ManifestLink) FindDerivativeInfo(JsonElement itemPayload, string tipVersionId)
         {
-            if (!itemPayload.TryGetProperty("included", out var included)) return null;
+            if (!itemPayload.TryGetProperty("included", out var included)) return (null, null);
             foreach (var entry in included.EnumerateArray())
             {
                 if (entry.GetProperty("type").GetString() != "versions") continue;
                 if (entry.GetProperty("id").GetString() != tipVersionId) continue;
-                return entry.GetProperty("relationships").GetProperty("derivatives").GetProperty("data").GetProperty("id").GetString();
+                var derivatives = entry.GetProperty("relationships").GetProperty("derivatives");
+                var urn = derivatives.GetProperty("data").GetProperty("id").GetString();
+                var manifestLink = derivatives.TryGetProperty("meta", out var meta) &&
+                    meta.TryGetProperty("link", out var link) &&
+                    link.TryGetProperty("href", out var href)
+                        ? href.GetString()
+                        : null;
+                return (urn, manifestLink);
             }
 
-            return null;
+            return (null, null);
+        }
+
+        // Data Management's "derivatives" relationship carries a manifest link already
+        // scoped to wherever the derivative lives - for EMEA/AUS-hosted projects that's
+        // "/v2/regions/{region}/designdata/{urn}/manifest", not the global
+        // "/v2/designdata/{urn}/manifest" path, which 401s for those. Prefer rewriting
+        // this link over the hardcoded template whenever it's available.
+        static string BuildMetadataUrl(string derivativeUrn, string? manifestLink)
+        {
+            var manifestPath = manifestLink?.Split('?')[0];
+            if (!string.IsNullOrEmpty(manifestPath) && manifestPath.EndsWith("/manifest", StringComparison.Ordinal))
+            {
+                return manifestPath[..^"/manifest".Length] + "/metadata";
+            }
+
+            return string.Format(CultureInfo.InvariantCulture, ModelDerivativeMetadataUrl, derivativeUrn);
         }
 
         async Task<List<JsonObject>> GetViewsForItemsAsync(List<JsonObject> items)
@@ -242,9 +265,9 @@ internal static class FlowCodegenPreludeTemplate
                     var itemPayload = await RestGetAsync(string.Format(CultureInfo.InvariantCulture, DataManagementItemUrl, projectId, plainItemId));
                     var tipVersionId = itemPayload.GetProperty("data").GetProperty("relationships").GetProperty("tip").GetProperty("data").GetProperty("id").GetString();
                     if (string.IsNullOrEmpty(tipVersionId)) continue;
-                    var derivativeUrn = FindDerivativeUrn(itemPayload, tipVersionId);
+                    var (derivativeUrn, manifestLink) = FindDerivativeInfo(itemPayload, tipVersionId);
                     if (string.IsNullOrEmpty(derivativeUrn)) continue;
-                    var metadata = await RestGetAsync(string.Format(CultureInfo.InvariantCulture, ModelDerivativeMetadataUrl, derivativeUrn));
+                    var metadata = await RestGetAsync(BuildMetadataUrl(derivativeUrn, manifestLink));
                     foreach (var view in metadata.GetProperty("data").GetProperty("metadata").EnumerateArray())
                     {
                         results.Add(new JsonObject
