@@ -1,3 +1,8 @@
+@using System.Reflection
+@{
+    var appVersion = Assembly.GetExecutingAssembly()
+        .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +18,13 @@
     <div class="landing-card">
         <div class="landing-brand">
             <img src="~/img/fdxgraph.svg" alt="" class="brand-icon">
-            Data Exchange Workflow Bench
+            <span class="brand-name">
+                Data Exchange Workflow Bench
+                @if (!string.IsNullOrEmpty(appVersion))
+                {
+                    <span class="brand-version">v@(appVersion)</span>
+                }
+            </span>
         </div>
 
         <svg class="landing-art" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">

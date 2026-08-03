@@ -6,6 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>DxFlow.Web</RootNamespace>
     <AssemblyName>aps-dx-graphql-workflow-net</AssemblyName>
+    <!-- Bumped by hand on each release so the UI's version badge tells us whether
+         a browser tab is showing the latest Dokku deploy or a stale one. -->
+    <Version>0.9.2</Version>
+    <!-- Without this, the SDK appends "+<git-sha>" to InformationalVersion,
+         which is exactly the noise the manual version number is meant to replace. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>

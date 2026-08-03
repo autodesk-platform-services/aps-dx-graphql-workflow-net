@@ -21,3 +21,17 @@ body {
     width: 1.2em;
     flex-shrink: 0;
 }
+
+/* Manually-bumped release version next to the brand name - lets us tell a
+   freshly-deployed tab apart from a stale one at a glance. vertical-align only
+   affects inline boxes in normal flow, so this only reads as a true subscript
+   because .brand-name (not this span) is the flex item - see toolbar-brand /
+   landing-brand. */
+.brand-version {
+    font-size: 0.55em;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0;
+    vertical-align: sub;
+    margin-left: 0.35em;
+}

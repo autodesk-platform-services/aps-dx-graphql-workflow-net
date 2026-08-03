@@ -1,4 +1,9 @@
 @model DxFlow.Web.Controllers.EditorViewModel
+@using System.Reflection
+@{
+    var appVersion = Assembly.GetExecutingAssembly()
+        .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +20,13 @@
     <div class="toolbar">
         <div class="toolbar-brand">
             <img src="~/img/fdxgraph.svg" alt="" class="brand-icon">
-            Data Exchange Workflow Bench
+            <span class="brand-name">
+                Data Exchange Workflow Bench
+                @if (!string.IsNullOrEmpty(appVersion))
+                {
+                    <span class="brand-version">v@(appVersion)</span>
+                }
+            </span>
         </div>
         <div class="toolbar-divider"></div>
         <div class="toolbar-actions">
