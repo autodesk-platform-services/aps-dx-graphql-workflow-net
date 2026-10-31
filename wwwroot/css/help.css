@@ -30,6 +30,7 @@
 }
 
 .help-dialog {
+    margin: auto; /* base.css resets the margins that centre a dialog */
     width: max-content;
     max-width: 90vw;
     padding: 32px 40px 28px;
@@ -124,8 +125,23 @@
     color: var(--text-primary);
 }
 
+/* Same look as .btn-primary, which the landing page doesn't load */
 .help-ok {
-    display: inline-flex;
     min-width: 96px;
-    justify-content: center;
+    padding: 8px 16px;
+    border: 1px solid var(--accent-color);
+    border-radius: var(--radius);
+    background: var(--accent-color);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.help-ok:hover {
+    background: var(--accent-color-dark);
+    border-color: var(--accent-color-dark);
+    box-shadow: var(--shadow-node-hover);
 }
