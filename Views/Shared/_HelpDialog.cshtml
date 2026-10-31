@@ -1,0 +1,24 @@
+@using DxFlow.Web.Configuration
+@using Microsoft.Extensions.Options
+@inject IOptions<ApsOptions> ApsOptions
+@{
+    // The client ID isn't a secret (it is in every sign-in URL); the field is as wide as the ID, so it is never cut
+    var clientId = ApsOptions.Value.ClientId ?? "Not configured";
+}
+<dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title">
+    <button class="help-close" title="Close" aria-label="Close">✕</button>
+    <h2 class="help-title" id="help-title">Helpers</h2>
+    <ul class="help-list">
+        <li>
+            <a href="https://get-started.aps.autodesk.com/#provision-access-in-other-products" target="_blank" rel="noopener">Provision</a>
+            the client ID
+            <span class="help-client"><input id="help-client-id" type="text" readonly value="@clientId" style="width: @(clientId.Length + 1)ch" aria-label="Client ID"><button id="help-copy" title="Copy the client ID">Copy</button></span>
+            in your hub.
+        </li>
+        <li>Find the complete source code <a href="https://github.com/autodesk-platform-services/aps-dx-graphql-workflow-net" target="_blank" rel="noopener">on GitHub</a>.</li>
+    </ul>
+    <form method="dialog">
+        <button class="btn btn-primary help-ok">OK</button>
+    </form>
+</dialog>
+<script src="~/js/help.js"></script>

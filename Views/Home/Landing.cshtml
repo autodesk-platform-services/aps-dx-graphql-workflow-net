@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="~/css/variables.css">
     <link rel="stylesheet" href="~/css/base.css">
     <link rel="stylesheet" href="~/css/landing.css">
+    <link rel="stylesheet" href="~/css/help.css">
 </head>
 <body class="landing-page">
+    <button class="help-btn landing-help" data-help-open title="Help" aria-haspopup="dialog" aria-controls="help-dialog">?</button>
     <div class="landing-card">
         <div class="landing-brand">
             <img src="~/img/fdxgraph.svg" alt="" class="brand-icon">
@@ -48,5 +50,6 @@
 
         <div class="landing-footnote">Uses your Autodesk Platform Services account</div>
     </div>
+    <partial name="_HelpDialog" />
 </body>
 </html>

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="~/css/variables.css">
     <link rel="stylesheet" href="~/css/base.css">
     <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/help.css">
 </head>
 <body>
     <div class="toolbar">
@@ -70,6 +71,7 @@
         </div>
 
         <div class="toolbar-user">
+            <button class="help-btn" data-help-open title="Help" aria-haspopup="dialog" aria-controls="help-dialog">?</button>
             <span class="user-name">@(Model.UserName ?? "Signed in")</span>
             <a href="/api/auth/logout" class="auth-btn">Log Off</a>
         </div>
@@ -134,5 +136,6 @@
 
     <script id="node-types-data" type="application/json">@Html.Raw(Model.NodeTypesJson)</script>
     <script type="module" src="~/js/app.js"></script>
+    <partial name="_HelpDialog" />
 </body>
 </html>
